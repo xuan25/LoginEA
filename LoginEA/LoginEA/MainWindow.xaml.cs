@@ -31,7 +31,7 @@ namespace LoginEA
         {
             Dispatcher.Invoke(new Action(() =>
             {
-                TokenBox.Text = "Logged out...";
+                TokenBox.Text = "Logged out";
             }));
         }
 

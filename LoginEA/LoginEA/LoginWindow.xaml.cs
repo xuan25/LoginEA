@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
@@ -37,6 +39,7 @@ namespace LoginEA
 
         private void LoginBroswer_LoadCompleted(object sender, NavigationEventArgs e)
         {
+            Console.WriteLine(e.Uri);
             WebBrowser webBrowser = (WebBrowser)sender;
             if (e.Uri.ToString().StartsWith("https://signin.ea.com/p/web2/login"))
             {
@@ -44,7 +47,7 @@ namespace LoginEA
                 this.WindowState = WindowState.Normal;
                 this.ShowInTaskbar = true;
             }
-            else if (e.Uri.ToString().StartsWith("https://www.origin.com/gbr/en-us/oauth/login"))
+            else if (Regex.Match(e.Uri.ToString(), "https://www.origin.com/[a-z]+/[a-z-]+/oauth/login").Success)
             {
                 this.Hide();
                 webBrowser.Navigate("https://accounts.ea.com/connect/auth?client_id=ORIGIN_JS_SDK&response_type=token&redirect_uri=nucleus:rest&prompt=none&release_type=prod");
@@ -56,7 +59,7 @@ namespace LoginEA
                 string json = document.IHTMLDocument2_body.IHTMLElement_innerText;
                 LoggedIn?.Invoke(json);
             }
-            else if (e.Uri.ToString().StartsWith("https://www.origin.com/gbr/en-us/oauth/logout"))
+            else if (Regex.Match(e.Uri.ToString(), "https://www.origin.com/[a-z]+/[a-z-]+/oauth/logout").Success)
             {
                 this.Hide();
                 LoggedOut?.Invoke();
