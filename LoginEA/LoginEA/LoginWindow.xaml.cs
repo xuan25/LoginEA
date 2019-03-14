@@ -11,7 +11,7 @@ namespace LoginEA
     /// </summary>
     public partial class LoginWindow : Window
     {
-        public delegate void LoggedInDel(string token);
+        public delegate void LoggedInDel(string json);
         public event LoggedInDel LoggedIn;
         public delegate void LoggedOutDel();
         public event LoggedOutDel LoggedOut;
@@ -56,7 +56,7 @@ namespace LoginEA
             {
                 //this.Hide();
                 dynamic document = webBrowser.Document;
-                string json = document.IHTMLDocument2_body.IHTMLElement_innerText;
+                string json = document.documentElement.innerText;
                 LoggedIn?.Invoke(json);
             }
             else if (Regex.Match(e.Uri.ToString(), "https://www.origin.com/[a-z]+/[a-z-]+/oauth/logout").Success)
