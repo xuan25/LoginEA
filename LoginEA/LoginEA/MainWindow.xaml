@@ -1,0 +1,14 @@
+﻿<Window x:Class="LoginEA.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoginEA"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="140" Width="400" Closing="Window_Closing">
+    <Grid>
+        <Button x:Name="LoginBtn" Content="Login" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="LoginBtn_Click"/>
+        <Button x:Name="LogoutBtn" Content="Logout" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" Click="LogoutBtn_Click"/>
+        <TextBlock x:Name="TokenBox" HorizontalAlignment="Stretch" Margin="10,34,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"/>
+    </Grid>
+</Window>
